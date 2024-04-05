@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert New Fudge</title>
+	<script type = "text/javascript">
+		function checkForm(form) {
+			// Validate if empty
+		    if(form.name.value == "") {
+		      alert("Error: Name is empty!");
+		      form.name.focus();
+		      return false;
+		    }
+			
+			// Validate must contain only letters
+		    var re = /^[a-zA-Z]+$/;
+	
+		    if(!re.test(form.name.value)) {
+		      alert("Error: Name contains invalid characters!");
+		      form.name.focus();
+		      return false;
+		    }
+	
+		    return true;
+		}
+	</script>
+</head>
+
+<body>
+	<form th:object="${newFudge}" th:action="@{/update/{id}(id=${newFudge.id})}" method=POST onsubmit="return checkForm(this);">
+		Name: <input name="name" size="20" th:field="*{name}"> <br />
+		Count: <input type="number" min="1" name="count" size="20" th:field="*{count}"><br />
+		<input name="submit" type="submit" value="submit" />
+	</form>
+	<a href="/viewAll">View all Fudge</a>
+</body>
+
+</html>

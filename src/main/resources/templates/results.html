@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>View All Fudge</title>
+</head>
+
+<body>
+	<form>
+		<table>
+			<tr th:each="currentFudge : ${fudge}">
+				<td th:text="${currentFudge.id}" />
+				<td th:text="${currentFudge.name}" />
+				<td th:text="${currentFudge.count}" />
+				<td><a th:href="@{/edit/{id}(id=${currentFudge.id})}">Edit</a></td>
+				<td><a th:href="@{/delete/{id}(id=${currentFudge.id})}">Delete</a></td>
+			</tr>
+		</table>
+	</form>
+	<a href="../inputFudge">Add a new Fudge</a>
+</body>
+
+</html>
